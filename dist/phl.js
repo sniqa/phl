@@ -63,16 +63,53 @@ class Phl {
     //单接口单次查询
     singleInterfaceSigleQuery(interfaceName, interfaceData) {
         return __awaiter(this, void 0, void 0, function* () {
-            let result = yield this.interfaces[interfaceName](interfaceData);
-            const { filters = false } = interfaceData;
-            if (filters) {
-                result = this.filter(filters, result);
+            let result = {};
+            try {
+                result = yield this.interfaces[interfaceName](interfaceData);
+                const { filters = false } = interfaceData;
+                if (filters) {
+                    result = this.filter(filters, result);
+                }
+                return result;
             }
-            return result;
+            catch (err) {
+                return (result = {
+                    [interfaceName]: 'This interface not exist',
+                });
+            }
         });
     }
-    filter(filterArray, filterData) {
-        return;
+    filter(filterArray, dataBeforFilter) {
+        let result = {};
+        //遍历
+        for (let i = 0; i < filterArray.length; i++) {
+            const filterOpt = filterArray[i];
+            try {
+                if (filterOpt.constructor === Object) {
+                    let objKey = Object.keys(filterOpt)[0]; //获取对象属性名，只能有一个值
+                    let objValue = filterOpt[objKey];
+                    let temp = this.filter(objValue, dataBeforFilter[objKey]);
+                    result[objKey] = this.isExist(objKey, dataBeforFilter) ? temp : 'Not Exist';
+                }
+                else {
+                    result[filterOpt] = this.isExist(filterOpt, dataBeforFilter) ? dataBeforFilter[filterOpt] : 'Not Exist';
+                }
+            }
+            catch (err) {
+                result = {
+                    [filterOpt]: 'Not Exist',
+                };
+                continue;
+            }
+        }
+        return result;
+    } //end of filter
+    //单次过滤
+    isExist(opt, obj) {
+        if (opt in obj) {
+            return true;
+        }
+        return false;
     }
 } //end of Phl
 exports.Phl = Phl;
