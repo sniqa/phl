@@ -55,8 +55,7 @@ class Phl {
                 return resultArray;
             }
             else {
-                let res = yield this.singleInterfaceSigleQuery(interfaceName, interfaceData);
-                return res;
+                return yield this.singleInterfaceSigleQuery(interfaceName, interfaceData);
             }
         });
     }
@@ -71,10 +70,11 @@ class Phl {
                     result = this.filter(filters, result);
                 }
                 return result;
+                //过界处理
             }
             catch (err) {
                 return (result = {
-                    [interfaceName]: 'This interface not exist',
+                    [interfaceName]: "This interface not exist",
                 });
             }
         });
@@ -84,32 +84,32 @@ class Phl {
         //遍历
         for (let i = 0; i < filterArray.length; i++) {
             const filterOpt = filterArray[i];
-            try {
-                if (filterOpt.constructor === Object) {
-                    let objKey = Object.keys(filterOpt)[0]; //获取对象属性名，只能有一个值
-                    let objValue = filterOpt[objKey];
-                    let temp = this.filter(objValue, dataBeforFilter[objKey]);
-                    result[objKey] = this.isExist(objKey, dataBeforFilter) ? temp : 'Not Exist';
-                }
-                else {
-                    result[filterOpt] = this.isExist(filterOpt, dataBeforFilter) ? dataBeforFilter[filterOpt] : 'Not Exist';
-                }
+            //filterOpt为对象时,需要进行递归操作
+            if (filterOpt.constructor === Object) {
+                let objKey = Object.keys(filterOpt)[0]; //获取key,只能有一个值
+                let objValue = filterOpt[objKey]; //获取值
+                //过界处理
+                result[objKey] = this.isExist(objKey, dataBeforFilter)
+                    ? this.filter(objValue, dataBeforFilter[objKey])
+                    : "Not Exist";
+                //filterOpt为字符串时，直接赋值
             }
-            catch (err) {
-                result = {
-                    [filterOpt]: 'Not Exist',
-                };
-                continue;
+            else if (typeof filterOpt === "string") {
+                //过界处理
+                result[filterOpt] = this.isExist(filterOpt, dataBeforFilter)
+                    ? dataBeforFilter[filterOpt]
+                    : "Not Exist";
             }
         }
         return result;
     } //end of filter
-    //单次过滤
+    //判断对象是否存在某属性
     isExist(opt, obj) {
-        if (opt in obj) {
-            return true;
-        }
-        return false;
-    }
+        // if (opt in obj) {
+        //   return true
+        // }
+        // return false
+        return opt in obj;
+    } //end of isExist
 } //end of Phl
 exports.Phl = Phl;
