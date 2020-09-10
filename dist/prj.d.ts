@@ -4,25 +4,25 @@ interface Query {
     mutations?: object;
     filters?: Array<string>;
 }
-interface PhlConfig {
+interface PrjConfig {
     interfaces: object;
 }
-interface PhlData {
+interface PrjData {
     [interfaceName: string]: Query | Array<Query>;
 }
 interface filtersConfig {
     [option: string]: Array<string | filtersConfig>;
 }
-export declare class Phl {
+export declare class Prj {
     private interfaces;
-    constructor(config: PhlConfig);
-    handler(data: PhlData): Promise<object>;
-    getInterfaceName(data: PhlData): Array<string>;
-    multipleInterfaceMultipleQuery(interfaceNameArray: Array<string>, data: PhlData): Promise<object>;
+    constructor(config: PrjConfig);
+    handler(data: PrjData): Promise<object>;
+    getInterfaceName(data: PrjData): Array<string>;
+    multipleInterfaceMultipleQuery(interfaceNameArray: Array<string>, data: PrjData): Promise<object>;
     singleInterfaceMultipleQuery(interfaceName: string, interfaceData: Query | Array<Query>): Promise<object>;
     singleInterfaceSigleQuery(interfaceName: string, interfaceData: Query): Promise<object>;
     filter(filterArray: Array<string | filtersConfig>, dataBeforFilter: object): object;
     isExist(opt: string, obj: object): boolean;
 }
 export {};
-//# sourceMappingURL=phl.d.ts.map
+//# sourceMappingURL=prj.d.ts.map

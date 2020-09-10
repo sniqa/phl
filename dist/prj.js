@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Phl = void 0;
-class Phl {
+exports.Prj = void 0;
+class Prj {
     constructor(config) {
         this.interfaces = config.interfaces;
     }
@@ -112,4 +112,4 @@ class Phl {
         return opt in obj;
     } //end of isExist
 } //end of Phl
-exports.Phl = Phl;
+exports.Prj = Prj;

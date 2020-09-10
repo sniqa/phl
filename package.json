@@ -1,10 +1,10 @@
 {
-  "name": "jsonpipe",
+  "name": "prj",
   "version": "1.0.0",
-  "description": "Use JSON data format to complete a front-end/back-end interaction method",
+  "description": "Use JSON to complete a front-end/back-end interaction method",
   "repository":{
     "type": "git",
-    "url": "https://github.com/sniqa/phl"
+    "url": "https://github.com/sniqa/prj"
   },
   "main": "./dist/index.js",
   "scripts": {

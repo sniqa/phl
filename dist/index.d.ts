@@ -1,3 +1,3 @@
 export declare function playground(): string;
-export { Phl } from "./phl";
+export { Prj } from "./prj";
 //# sourceMappingURL=index.d.ts.map

@@ -1,31 +1,33 @@
-# phl
+# prij
 
 ## Usage
-```
-const { Phl } = require('phl');
 
-const phl = new Phl({
+```shell
+const { Prj } = require('prj');
+
+const prj = new Prj({
   interfaces: controllers
 })
 ```
 
 ### Example for Koa
-```
-//get interface collection
+
+```shell
+//Get interface collection
 const ctl = require("./controller")
 
-const { Phl, playground } = require("phl")
-const phl = new Phl({
+const { Prj, playground } = require("prj")
+const prj = new Prj({
   interfaces: ctl,
 })
 
 //Open test page
-router.get("/phl", (ctx) => {
+router.get("/prj", (ctx) => {
   ctx.body = playground()
 })
 
 //Request processing
-router.post("/phl", async (ctx) => {
+router.post("/prj", async (ctx) => {
   const request = ctx.request.body
   const res = await phl.handler(request)
 
