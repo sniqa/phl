@@ -1,10 +1,10 @@
 {
-  "name": "prj",
+  "name": "rpj",
   "version": "1.0.0",
   "description": "Use JSON to complete a front-end/back-end interaction method",
   "repository":{
     "type": "git",
-    "url": "https://github.com/sniqa/prj"
+    "url": "https://github.com/sniqa/rpj"
   },
   "main": "./dist/index.js",
   "scripts": {

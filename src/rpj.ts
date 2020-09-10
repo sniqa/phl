@@ -5,11 +5,11 @@ interface Query {
   filters?: Array<string>
 }
 
-interface PrjConfig {
+interface RpjConfig {
   interfaces: object
 }
 
-interface PrjData {
+interface RpjData {
   [interfaceName: string]: Query | Array<Query>
 }
 
@@ -17,15 +17,15 @@ interface filtersConfig {
   [option: string]: Array<string | filtersConfig>
 }
 
-export class Prj {
+export class Rpj {
   private interfaces: object
 
-  constructor(config: PrjConfig) {
+  constructor(config: RpjConfig) {
     this.interfaces = config.interfaces
   }
 
   //主要处理函数
-  async handler(data: PrjData) {
+  async handler(data: RpjData) {
     //get interface
     const interfaceNameArray: Array<string> = this.getInterfaceName(data)
 
@@ -34,14 +34,14 @@ export class Prj {
   } //end of handler
 
   //获取接口名称数组
-  getInterfaceName(data: PrjData): Array<string> {
+  getInterfaceName(data: RpjData): Array<string> {
     return Object.keys(data)
   } //end of getInterface
 
   //多接口多次查询
   async multipleInterfaceMultipleQuery(
     interfaceNameArray: Array<string>,
-    data: PrjData
+    data: RpjData
   ): Promise<object> {
     //对接口名称数组进行遍历
     let totalResult: object = {}

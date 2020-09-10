@@ -3,9 +3,9 @@
 ## Usage
 
 ```shell
-const { Prj } = require('prj');
+const { Rpj } = require('rpj');
 
-const prj = new Prj({
+const rpj = new Rpj({
   interfaces: controllers
 })
 ```
@@ -16,20 +16,20 @@ const prj = new Prj({
 //Get interface collection
 const ctl = require("./controller")
 
-const { Prj, playground } = require("prj")
-const prj = new Prj({
+const { Rpj, playground } = require("rpj")
+const rpj = new rpj({
   interfaces: ctl,
 })
 
 //Open test page
-router.get("/prj", (ctx) => {
+router.get("/rpj", (ctx) => {
   ctx.body = playground()
 })
 
 //Request processing
-router.post("/prj", async (ctx) => {
+router.post("/rpj", async (ctx) => {
   const request = ctx.request.body
-  const res = await phl.handler(request)
+  const res = await rpj.handler(request)
 
   ctx.body = res
 })
