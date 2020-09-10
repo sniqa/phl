@@ -2,23 +2,24 @@
   "name": "rpj",
   "version": "1.0.0",
   "description": "Use JSON to complete a front-end/back-end interaction method",
-  "repository":{
+  "repository": {
     "type": "git",
     "url": "https://github.com/sniqa/rpj"
   },
-  "main": "./dist/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-   "_requested": {
-   
-  },
+  "_requested": {},
   "keywords": [
-    "node", "json", "front/back-end interaction in JSON format"
+    "node",
+    "json",
+    "front/back-end interaction in JSON format"
   ],
   "author": "sniqa",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^14.6.0"
+    "@types/node": "^14.6.0",
+    "rpj-playground": "^0.1.0"
   }
 }
