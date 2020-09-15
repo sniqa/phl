@@ -4,25 +4,25 @@ interface Query {
     mutations?: object;
     filters?: Array<string>;
 }
-interface RpjConfig {
+interface AnfrageConfig {
     interfaces: object;
 }
-interface RpjData {
+interface AnfrageData {
     [interfaceName: string]: Query | Array<Query>;
 }
 interface filtersConfig {
     [option: string]: Array<string | filtersConfig>;
 }
-export declare class Rpj {
+export declare class Anfrage {
     private interfaces;
-    constructor(config: RpjConfig);
-    handler(data: RpjData): Promise<object>;
-    getInterfaceName(data: RpjData): Array<string>;
-    multipleInterfaceMultipleQuery(interfaceNameArray: Array<string>, data: RpjData): Promise<object>;
+    constructor(config: AnfrageConfig);
+    handler(data: AnfrageData): Promise<object>;
+    getInterfaceName(data: AnfrageData): Array<string>;
+    multipleInterfaceMultipleQuery(interfaceNameArray: Array<string>, data: AnfrageData): Promise<object>;
     singleInterfaceMultipleQuery(interfaceName: string, interfaceData: Query | Array<Query>): Promise<object>;
     singleInterfaceSigleQuery(interfaceName: string, interfaceData: Query): Promise<object>;
     filter(filterArray: Array<string | filtersConfig>, dataBeforFilter: object): object;
     isExist(opt: string, obj: object): boolean;
 }
 export {};
-//# sourceMappingURL=rpj.d.ts.map
+//# sourceMappingURL=anfrage.d.ts.map

@@ -3,12 +3,16 @@
 ## Usage
 
 ```shell
-const { Rpj } = require('rpj');
+const { Anfrage } = require('anfrage');
 
-const rpj = new Rpj({
+const anfrage = new Anfrage({
   interfaces: controllers
 })
 ```
+
+### Github
+
+See [Project Reference](https://github.com/sniqa/anfrage).
 
 ### Example for Koa
 
@@ -16,21 +20,20 @@ const rpj = new Rpj({
 //Get interface collection
 const ctl = require("./controller")
 
-const { Rpj, playground } = require("rpj")
-const rpj = new rpj({
+const { Anfrage, playground } = require("anfrage")
+const anfrage = new Anfrage({
   interfaces: ctl,
 })
 
 //Open test page
-router.get("/rpj", (ctx) => {
+router.get("/anfrage", (ctx) => {
   ctx.body = playground()
 })
 
 //Request processing
-router.post("/rpj", async (ctx) => {
+router.post("/anfrage", async (ctx) => {
   const request = ctx.request.body
-  const res = await rpj.handler(request)
-
+  const res = await anfrage.handler(request)
   ctx.body = res
 })
 

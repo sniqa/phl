@@ -1,10 +1,10 @@
 {
-  "name": "rpj",
+  "name": "anfrage",
   "version": "1.0.0",
-  "description": "Use JSON to complete a front-end/back-end interaction method",
+  "description": "Learn from Graphql. Try to rely entirely on JSON front-end/back-end interaction",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sniqa/rpj"
+    "url": "https://github.com/sniqa/anfrage"
   },
   "main": "index.js",
   "scripts": {
@@ -14,12 +14,13 @@
   "keywords": [
     "node",
     "json",
-    "front/back-end interaction in JSON format"
+    "Graphql",
+    "koa",
+    "interaction"
   ],
   "author": "sniqa",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^14.6.0",
-    "rpj-playground": "^0.1.0"
+    "anfrage-playground": "^0.1.0"
   }
 }

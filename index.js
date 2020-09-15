@@ -1,4 +1,4 @@
 
-module.exports.playground = require("rpj-playground")
-const { Rpj } = require("./dist/rpj")
-module.exports.Rpj = Rpj
+module.exports.playground = require("anfrage-playground")
+const { Anfrage } = require("./dist/anfrage")
+module.exports.Anfrage = Anfrage

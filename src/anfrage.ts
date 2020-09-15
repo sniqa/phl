@@ -5,11 +5,11 @@ interface Query {
   filters?: Array<string>
 }
 
-interface RpjConfig {
+interface AnfrageConfig {
   interfaces: object
 }
 
-interface RpjData {
+interface AnfrageData {
   [interfaceName: string]: Query | Array<Query>
 }
 
@@ -17,15 +17,15 @@ interface filtersConfig {
   [option: string]: Array<string | filtersConfig>
 }
 
-export class Rpj {
+export class Anfrage {
   private interfaces: object
 
-  constructor(config: RpjConfig) {
+  constructor(config: AnfrageConfig) {
     this.interfaces = config.interfaces
   }
 
   //主要处理函数
-  async handler(data: RpjData) {
+  async handler(data: AnfrageData) {
     //get interface
     const interfaceNameArray: Array<string> = this.getInterfaceName(data)
 
@@ -34,14 +34,14 @@ export class Rpj {
   } //end of handler
 
   //获取接口名称数组
-  getInterfaceName(data: RpjData): Array<string> {
+  getInterfaceName(data: AnfrageData): Array<string> {
     return Object.keys(data)
   } //end of getInterface
 
   //多接口多次查询
   async multipleInterfaceMultipleQuery(
     interfaceNameArray: Array<string>,
-    data: RpjData
+    data: AnfrageData
   ): Promise<object> {
     //对接口名称数组进行遍历
     let totalResult: object = {}
@@ -140,4 +140,7 @@ export class Rpj {
 
     return opt in obj
   } //end of isExist
-} //end of Phl
+} //end of Anfrage
+
+
+//PHL -> JSONROUTE -> RPJ -> ANFRAGE

@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
     /* Basic Options */
-    "target": "es6" /* target用于指定编译之后的版本目标 version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */,
+    "target": "ESNEXT" /* target用于指定编译之后的版本目标 version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */,
     "module": "commonjs" /* 用来指定要使用的模块标准: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */,
     "lib": [
-      "es6",
-      "ES2015"
+      "ES6",
       // "dom"
     ] /* lib用于指定要包含在编译中的库文件，这个我们在前面的课程中讲过一点，如果你要使用一些ES6的新语法，你需要引入ES6这个库，或者也可以写ES2015。 */,
     // "allowJs": true,                       /* allowJs设置的值为true或false，用来指定是否允许编译JS文件，默认是false，即不编译JS文件。 */
