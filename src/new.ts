@@ -5,57 +5,88 @@ interface AnfrageConfig {
   interfaceMap?: boolean //查询接口映射
 }
 
+interface AnfrageData {
+	[interfaceName: string]: Query | Array<Query>
+}
+
+interface Query {
+	query?: object
+	condition?: object
+	mutations?: object
+	filters?: Array<string>
+}
+
 class NewAnfrage {
-  private qis: object //Query Interface set
-  private qisn: Array<string> //Query Interface set name
+	private interfaces: object //Query Interface set
+	private interfacesKeys: Array<string> //Query Interface set name
 
-  constructor(config: AnfrageConfig) {
-    this.qis = config.queryInterfaces
-  }
+	constructor(config: AnfrageConfig) {
+		this.interfaces = config.queryInterfaces
+	}
 
-  getQiskeys() {
-    return Object.keys(this.qis)
-  }
+	handler(query) {
+		//获取查询接口
+		this.interfacesKeys = this.getInterfaceKeys(query)
 
-  getQisValue(queryInterfaceName: string) {
-    return this.qis[queryInterfaceName]
-  }
+		//遍历查询接口
+		for (let interfaceKey of this.interfacesKeys) {
+			let curInterfaceVal = this.getInterfaceValue(interfaceKey) //获取当前查询接口的值
 
-  isObj(data: any) {}
+			let curInterfaceValType = this.gettype(curInterfaceVal) //获取当前查询条件的数据类型
 
-  isString(data: any) {}
+			switch (curInterfaceValType) {
+				case Object:
+					break
+				case Array:
+					break
+				case Object:
+					break
+				case Object:
+					break
+			}
+		}
+	}
 
-  //判断是否数组
-  isArray(data: any): boolean {
-    return Array.isArray(data)
-  }
+	getInterfaceKeys(query) {
+		return Object.keys(this.interfaces)
+	}
 
-  getType(obj) {
-    if (obj == null) {
-      return (obj + "").toLowerCase()
-    } // implicit toString() conversion
-    let deepType = Object.prototype.toString
-      .call(obj)
-      .slice(8, -1)
-      .toLowerCase()
-    return deepType.match(
-      /array|date|error|function|regexp/ /*|number|string|symbol|bigint|boolean/*/
-    )
-      ? deepType
-      : typeof obj === "object" || typeof obj === "function"
-      ? "object"
-      : deepType
-  }
+	getInterfaceValue(InterfaceName: string) {
+		return this.interfaces[InterfaceName]
+	}
+
+	isObj(data: any) {}
+
+	isString(data: any) {}
+
+	//判断是否数组
+	isArray(data: any): boolean {
+		return Array.isArray(data)
+	}
+
+	isExist(opt: string, obj: object) {
+		return opt in obj
+	} //end of isExist
+
+	getType(obj) {
+		if (obj == null) {
+			return (obj + '').toLowerCase()
+		} // implicit toString() conversion
+		let deepType = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase()
+		return deepType.match(/array|date|error|function|regexp/ /*|number|string|symbol|bigint|boolean/*/) ? deepType : typeof obj === 'object' || typeof obj === 'function' ? 'object' : deepType
+	}
+
+	gettype(obj) {
+		let type = typeof obj
+
+		if (type !== 'object') {
+			return type
+		}
+		//如果不是object类型的数据，直接用typeof就能判断出来
+
+		//如果是object类型数据，准确判断类型必须使用Object.prototype.toString.call(obj)的方式才能判断
+		return Object.prototype.toString.call(obj).replace(/^\[object (\S+)\]$/, '$1')
+	}
 }
 
-function gettype(obj) {
-  let type = typeof obj
 
-  if (type !== "object") {
-    return type
-  }
-  //如果不是object类型的数据，直接用typeof就能判断出来
-
-  //如果是object类型数据，准确判断类型必须使用Object.prototype.toString.call(obj)的方式才能判断
-  return Object.prototype.toString.call(obj).replace(/^\[object (\S+)\]$/, "$1")
-}
